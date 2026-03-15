@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>住まいと資産の計画 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1c1c1a;
+  --ink-mid: #52524a;
+  --ink-light: #9a9a90;
+  --paper: #f5f3ee;
+  --paper-warm: #ede9df;
+  --white: #ffffff;
+  --accent: #2d5a3d;
+  --accent-light: #e8f0ea;
+  --amber: #b5631a;
+  --amber-light: #fdf0e4;
+  --blue: #1e3f6e;
+  --blue-light: #e8eef6;
+  --red: #8b2020;
+  --red-light: #faeaea;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+/* ── HEADER ── */
+.site-header {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 3rem 2rem 2.5rem;
+  text-align: center;
+}
+.site-header .eyebrow {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--ink-light);
+  margin-bottom: 1rem;
+}
+.site-header h1 {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
+}
+.site-header .subtitle {
+  font-size: 13px;
+  color: var(--ink-light);
+  font-weight: 300;
+}
+
+/* ── NAV ── */
+.sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid var(--paper-warm);
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+}
+.sticky-nav a {
+  flex-shrink: 0;
+  padding: 14px 20px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ink-mid);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.sticky-nav a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+/* ── SECTIONS ── */
+.section {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  border-bottom: 1px solid var(--paper-warm);
+}
+.section:last-child { border-bottom: none; }
+.section-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--ink-light);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+/* ── PREMISE BOX ── */
+.premise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1px;
+  background: var(--paper-warm);
+  border: 1px solid var(--paper-warm);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.premise-item {
+  background: var(--white);
+  padding: 1rem 1.25rem;
+}
+.premise-item .pk { font-size: 11px; color: var(--ink-light); margin-bottom: 3px; }
+.premise-item .pv { font-size: 15px; font-weight: 500; color: var(--ink); }
+.premise-item .ps { font-size: 11px; color: var(--ink-mid); margin-top: 2px; }
+
+/* ── SCENARIO CARDS ── */
+.scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.scenario-card {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--paper-warm);
+  background: var(--white);
+}
+.scenario-card.recommended { border-color: var(--accent); border-width: 2px; }
+.scenario-header {
+  padding: 1rem 1.25rem 0.75rem;
+  border-bottom: 1px solid var(--paper-warm);
+}
+.scenario-header .badge {
+  display: inline-block;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  margin-bottom: 6px;
+  font-weight: 400;
+}
+.badge-green { background: var(--accent-light); color: var(--accent); }
+.badge-amber { background: var(--amber-light); color: var(--amber); }
+.badge-blue { background: var(--blue-light); color: var(--blue); }
+.badge-red { background: var(--red-light); color: var(--red); }
+.scenario-header h3 {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+.scenario-body { padding: 1rem 1.25rem; }
+.scenario-num {
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--ink);
+  margin: 0.25rem 0;
+  font-feature-settings: "tnum";
+}
+.scenario-num .unit { font-size: 14px; font-weight: 300; color: var(--ink-mid); }
+.scenario-detail {
+  font-size: 12px;
+  color: var(--ink-mid);
+  line-height: 1.7;
+  margin-top: 0.75rem;
+}
+.scenario-detail li { list-style: none; padding-left: 1em; position: relative; }
+.scenario-detail li::before { content: "—"; position: absolute; left: 0; color: var(--ink-light); }
+
+/* ── METRIC ROW ── */
+.metric-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1px;
+  background: var(--paper-warm);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1rem 0;
+}
+.metric-cell {
+  background: var(--white);
+  padding: 0.9rem 1rem;
+  text-align: center;
+}
+.metric-cell .mk { font-size: 11px; color: var(--ink-light); margin-bottom: 4px; }
+.metric-cell .mv { font-size: 18px; font-weight: 500; font-feature-settings: "tnum"; }
+.metric-cell .ms { font-size: 10px; color: var(--ink-mid); margin-top: 2px; }
+.mv.pos { color: var(--accent); }
+.mv.neg { color: var(--red); }
+.mv.warn { color: var(--amber); }
+
+/* ── TIMELINE ── */
+.timeline { padding: 0.5rem 0; }
+.tl-item {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 1.25rem;
+  padding-bottom: 1.75rem;
+  position: relative;
+}
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: 36px;
+  top: 28px;
+  bottom: 0;
+  width: 1px;
+  background: var(--paper-warm);
+}
+.tl-item:last-child::before { display: none; }
+.tl-age {
+  text-align: right;
+  padding-top: 3px;
+}
+.tl-age .age-num {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  display: block;
+  line-height: 1.2;
+}
+.tl-age .age-label { font-size: 10px; color: var(--ink-light); }
+.tl-dot-wrap { position: relative; }
+.tl-content {
+  padding-top: 3px;
+}
+.tl-content h4 {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 3px;
+  color: var(--ink);
+}
+.tl-content p { font-size: 12px; color: var(--ink-mid); line-height: 1.7; }
+.tl-content .tl-nums {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+.tl-num-chip {
+  background: var(--paper);
+  border: 1px solid var(--paper-warm);
+  border-radius: 4px;
+  padding: 3px 10px;
+  font-size: 11px;
+  color: var(--ink-mid);
+  font-feature-settings: "tnum";
+}
+.tl-num-chip strong { color: var(--ink); font-weight: 500; }
+
+/* ── COMPARISON TABLE ── */
+.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 1rem 0;
+}
+.comp-table th {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 10px 14px;
+  font-weight: 400;
+  font-size: 12px;
+  text-align: left;
+}
+.comp-table th:first-child { width: 130px; }
+.comp-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--paper-warm);
+  vertical-align: top;
+  line-height: 1.6;
+}
+.comp-table tr:last-child td { border-bottom: none; }
+.comp-table tr:nth-child(even) td { background: var(--paper); }
+.comp-table .col-label { font-size: 11px; color: var(--ink-mid); font-weight: 400; }
+.icon-good { color: var(--accent); }
+.icon-warn { color: var(--amber); }
+.icon-bad { color: var(--red); }
+
+/* ── CALLOUT ── */
+.callout {
+  border-left: 3px solid var(--accent);
+  padding: 1rem 1.25rem;
+  background: var(--accent-light);
+  border-radius: 0 8px 8px 0;
+  margin: 1.25rem 0;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--ink);
+}
+.callout.warn { border-color: var(--amber); background: var(--amber-light); }
+.callout.info { border-color: var(--blue); background: var(--blue-light); }
+.callout strong { font-weight: 500; }
+
+/* ── NOTE ── */
+.note-text {
+  font-size: 11px;
+  color: var(--ink-light);
+  line-height: 1.8;
+  margin-top: 0.75rem;
+}
+
+/* ── NISA VISUAL ── */
+.nisa-bar-wrap { margin: 1rem 0; }
+.nisa-bar-label { font-size: 12px; color: var(--ink-mid); margin-bottom: 6px; }
+.nisa-bar {
+  height: 28px;
+  border-radius: 4px;
+  background: var(--paper-warm);
+  overflow: hidden;
+  display: flex;
+  position: relative;
+}
+.nisa-bar-fill {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  font-size: 11px;
+  font-weight: 500;
+  color: white;
+  white-space: nowrap;
+}
+
+/* ── SIMULATOR ── */
+.sim-wrap {
+  background: var(--white);
+  border: 1px solid var(--paper-warm);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 1.5rem 0;
+}
+.sim-header {
+  background: var(--paper);
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--paper-warm);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-mid);
+}
+.sim-body { padding: 1.5rem; }
+.sim-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.sim-row label {
+  font-size: 12px;
+  color: var(--ink-mid);
+  width: 160px;
+  flex-shrink: 0;
+}
+.sim-row input[type=range] {
+  flex: 1;
+  accent-color: var(--accent);
+  height: 3px;
+}
+.sim-row .sim-out {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink);
+  min-width: 80px;
+  text-align: right;
+}
+.sim-results {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--paper-warm);
+}
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1px;
+  background: var(--paper-warm);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.result-cell {
+  background: var(--white);
+  padding: 0.9rem 1rem;
+}
+.result-cell .rk { font-size: 11px; color: var(--ink-light); margin-bottom: 3px; }
+.result-cell .rv {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--ink);
+  font-feature-settings: "tnum";
+}
+.result-cell .rs { font-size: 11px; color: var(--ink-mid); margin-top: 2px; }
+.result-bar {
+  display: flex;
+  height: 24px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 8px 0 4px;
+}
+.rb-seg {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 500;
+  color: white;
+  transition: width 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.rb-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 11px;
+  color: var(--ink-mid);
+}
+.rb-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  margin-right: 3px;
+  vertical-align: middle;
+}
+.alert-bar {
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  margin-top: 10px;
+  line-height: 1.7;
+}
+.alert-ok { background: var(--accent-light); color: var(--accent); }
+.alert-warn { background: var(--amber-light); color: var(--amber); }
+.alert-ng { background: var(--red-light); color: var(--red); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  color: var(--ink-light);
+  text-align: center;
+  padding: 2rem;
+  font-size: 11px;
+  line-height: 2;
+}
+
+/* ── ANIM ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.section { animation: fadeUp 0.5s ease both; }
+.section:nth-child(1) { animation-delay: 0.05s; }
+.section:nth-child(2) { animation-delay: 0.1s; }
+.section:nth-child(3) { animation-delay: 0.15s; }
+.section:nth-child(4) { animation-delay: 0.2s; }
+.section:nth-child(5) { animation-delay: 0.25s; }
+
+@media (max-width: 600px) {
+  .site-header { padding: 2rem 1.25rem; }
+  .section { padding: 2rem 1.25rem; }
+  .comp-table { font-size: 12px; }
+  .comp-table td, .comp-table th { padding: 8px 10px; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <p class="eyebrow">Family Housing Plan · 2026</p>
+  <h1>住まいと資産の計画</h1>
+  <p class="subtitle">夫婦で共有するためのシミュレーション資料　／　2026年3月作成</p>
+</header>
+
+<nav class="sticky-nav">
+  <a href="#premise">前提条件</a>
+  <a href="#conclusion">結論</a>
+  <a href="#simulator">シミュレーター</a>
+  <a href="#comparison">3シナリオ比較</a>
+  <a href="#timeline">タイムライン</a>
+  <a href="#nisa">NISA・教育資金</a>
+  <a href="#notes">大切なポイント</a>
+</nav>
+
+<!-- ── 前提条件 ── -->
+<section class="section" id="premise">
+  <p class="section-label">基本条件</p>
+  <h2 class="section-title">シミュレーションの前提</h2>
+
+  <div class="premise-grid">
+    <div class="premise-item">
+      <p class="pk">夫（本人）</p>
+      <p class="pv" id="p-age1">39歳・年収1,300万</p>
+      <p class="ps">会社経営者・映像制作</p>
+    </div>
+    <div class="premise-item">
+      <p class="pk">妻</p>
+      <p class="pv" id="p-age2">32歳・年収700万</p>
+      <p class="ps">会社員</p>
+    </div>
+    <div class="premise-item">
+      <p class="pk">子ども</p>
+      <p class="pv" id="p-child">1人予定（1年後誕生）</p>
+      <p class="ps">妻の育休12ヶ月想定</p>
+    </div>
+    <div class="premise-item">
+      <p class="pk">手取り合計（月）</p>
+      <p class="pv">約150万円</p>
+      <p class="ps">税引・社保控除後（×0.72換算）</p>
+    </div>
+    <div class="premise-item">
+      <p class="pk">現在の金融資産</p>
+      <p class="pv">約3,000万円</p>
+      <p class="ps">夫NISA 2年分（720万）含む</p>
+    </div>
+    <div class="premise-item">
+      <p class="pk">頭金上限</p>
+      <p class="pv">〜700万円</p>
+      <p class="ps">残りはNISA・生活費バッファに</p>
+    </div>
+    <div class="premise-item">
+      <p class="pk">住宅ローン金利（想定）</p>
+      <p class="pv">0.85%（変動）</p>
+      <p class="ps">将来上昇リスクあり→別途確認</p>
+    </div>
+    <div class="premise-item">
+      <p class="pk">NISA方針</p>
+      <p class="pv">夫婦フル活用（月60万）</p>
+      <p class="ps">→子どもの教育資金に充当</p>
+    </div>
+  </div>
+
+  <div class="callout info">
+    <strong>このシミュレーションについて</strong><br>
+    実際の数字はローン審査・金利・物件状況により変わります。あくまで「おおよその方向感」を共有するための試算です。最終的にはFP・銀行に相談することをおすすめします。
+  </div>
+</section>
+
+<!-- ── 結論 ── -->
+<section class="section" id="conclusion">
+  <p class="section-label">結論</p>
+  <h2 class="section-title">今年、いくらの家が買えるか</h2>
+
+  <div class="metric-row">
+    <div class="metric-cell">
+      <p class="mk">購入可能な上限額</p>
+      <p class="mv pos" id="c-maxprice">—</p>
+      <p class="ms">頭金700万・月返済〜38万</p>
+    </div>
+    <div class="metric-cell">
+      <p class="mk">借入額</p>
+      <p class="mv" id="c-loan">—</p>
+      <p class="ms">35年ローン</p>
+    </div>
+    <div class="metric-cell">
+      <p class="mk">月返済額</p>
+      <p class="mv" id="c-monthly">—</p>
+      <p class="ms">返済負担率 <span id="c-ratio">—</span></p>
+    </div>
+    <div class="metric-cell">
+      <p class="mk">6年後住み替え先（上限）</p>
+      <p class="mv pos" id="c-p2">—</p>
+      <p class="ms">郊外2〜3LDK</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>ポイント：</strong>頭金700万を入れると借入は約1.43億。金利0.85%・35年ローンで月返済は<strong>約38万円</strong>。手取り150万からNISA月60万・生活費45万を引いても月7万の余力が生まれます。育休中（妻の収入が67%に）は一時的にNISAを月20万に抑えることでキャッシュを守れます。
+  </div>
+</section>
+
+<!-- ── シミュレーター ── -->
+<section class="section" id="simulator">
+  <p class="section-label">インタラクティブ</p>
+  <h2 class="section-title">条件を変えてシミュレーション</h2>
+
+  <div class="sim-wrap">
+    <div class="sim-header">数値を動かして確認できます</div>
+    <div class="sim-body">
+      <div style="font-size:11px;color:var(--ink-light);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--paper-warm);">家族構成</div>
+      <div class="sim-row">
+        <label>夫の年齢（現在）</label>
+        <input type="range" min="30" max="55" step="1" id="sl-age1" value="39">
+        <span class="sim-out" id="so-age1">39歳</span>
+      </div>
+      <div class="sim-row">
+        <label>妻の年齢（現在）</label>
+        <input type="range" min="25" max="50" step="1" id="sl-age2" value="32">
+        <span class="sim-out" id="so-age2">32歳</span>
+      </div>
+      <div class="sim-row">
+        <label>第1子が生まれる年</label>
+        <input type="range" min="0" max="5" step="1" id="sl-childyr" value="1">
+        <span class="sim-out" id="so-childyr">1年後</span>
+      </div>
+      <div style="font-size:11px;color:var(--ink-light);margin:14px 0 10px;padding-bottom:8px;border-bottom:1px solid var(--paper-warm);">住宅ローン・収入</div>
+      <div class="sim-row">
+        <label>許容月返済額（万）</label>
+        <input type="range" min="25" max="50" step="0.5" id="sl-loanm" value="38">
+        <span class="sim-out" id="so-loanm">38万</span>
+      </div>
+      <div class="sim-row">
+        <label>頭金（万）</label>
+        <input type="range" min="300" max="2000" step="50" id="sl-dp" value="700">
+        <span class="sim-out" id="so-dp">700万</span>
+      </div>
+      <div class="sim-row">
+        <label>金利（%）</label>
+        <input type="range" min="0.3" max="3.0" step="0.05" id="sl-rate" value="0.85">
+        <span class="sim-out" id="so-rate">0.85%</span>
+      </div>
+      <div class="sim-row">
+        <label>夫年収（万）</label>
+        <input type="range" min="800" max="3000" step="50" id="sl-i1" value="1300">
+        <span class="sim-out" id="so-i1">1,300万</span>
+      </div>
+      <div class="sim-row">
+        <label>妻年収（万）</label>
+        <input type="range" min="300" max="1500" step="50" id="sl-i2" value="700">
+        <span class="sim-out" id="so-i2">700万</span>
+      </div>
+      <div class="sim-row">
+        <label>生活費（万/月）</label>
+        <input type="range" min="25" max="70" step="1" id="sl-life" value="45">
+        <span class="sim-out" id="so-life">45万/月</span>
+      </div>
+      <div style="font-size:11px;color:var(--ink-light);margin:14px 0 10px;padding-bottom:8px;border-bottom:1px solid var(--paper-warm);">NISA・貯蓄</div>
+      <div class="sim-row">
+        <label>NISA月額・通常時（万）</label>
+        <input type="range" min="5" max="60" step="5" id="sl-nisa" value="60">
+        <span class="sim-out" id="so-nisa">60万/月</span>
+      </div>
+      <div class="sim-row">
+        <label>NISA月額・育休中（万）</label>
+        <input type="range" min="0" max="30" step="5" id="sl-nisamat" value="20">
+        <span class="sim-out" id="so-nisamat">20万/月</span>
+      </div>
+
+      <div class="sim-results">
+        <div class="result-grid">
+          <div class="result-cell">
+            <p class="rk">購入上限</p>
+            <p class="rv" id="r-price">—</p>
+            <p class="rs">頭金込み</p>
+          </div>
+          <div class="result-cell">
+            <p class="rk">借入額</p>
+            <p class="rv" id="r-loan">—</p>
+            <p class="rs">35年・変動</p>
+          </div>
+          <div class="result-cell">
+            <p class="rk">月返済</p>
+            <p class="rv" id="r-monthly">—</p>
+            <p class="rs">返済負担率 <span id="r-ratio">—</span></p>
+          </div>
+          <div class="result-cell">
+            <p class="rk">月次余力</p>
+            <p class="rv" id="r-surplus">—</p>
+            <p class="rs">NISA60万・生活費込み後</p>
+          </div>
+        </div>
+
+        <p style="font-size:12px;color:var(--ink-mid);margin-bottom:6px;">月次収支の内訳（手取りに対する割合）</p>
+        <div class="result-bar" id="r-bar"></div>
+        <div class="rb-legend">
+          <span><span class="rb-dot" style="background:#2d5a3d"></span>返済</span>
+          <span><span class="rb-dot" style="background:#4a90d9"></span>NISA</span>
+          <span><span class="rb-dot" style="background:#888880"></span>生活費</span>
+          <span><span class="rb-dot" style="background:#9fd4b0"></span>余力</span>
+          <span><span class="rb-dot" style="background:#c0392b"></span>超過</span>
+        </div>
+        <div class="alert-bar" id="r-alert"></div>
+
+        <p class="note-text" style="margin-top:1rem;">* 手取りは年収×0.72÷12で概算。育休中・保育料を除いた通常時の数値です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 3シナリオ比較 ── -->
+<section class="section" id="comparison">
+  <p class="section-label">シナリオ比較</p>
+  <h2 class="section-title">住み替え・住み続ける・賃貸、どれがいい？</h2>
+
+  <div class="scenario-grid">
+    <div class="scenario-card recommended">
+      <div class="scenario-header">
+        <span class="badge badge-green">推奨プラン</span>
+        <h3>A. 購入 → 6年後住み替え</h3>
+      </div>
+      <div class="scenario-body">
+        <p style="font-size:11px;color:var(--ink-light);">25年後の推定資産</p>
+        <p class="scenario-num" id="sc-a-asset">—<span class="unit">万円</span></p>
+        <ul class="scenario-detail">
+          <li>都心1.5億購入→6年後売却</li>
+          <li>郊外2億前後の子育て物件へ</li>
+          <li>売却益で頭金を厚くできる</li>
+          <li>インフレに強い（資産保有）</li>
+          <li>NISA+不動産の二刀流</li>
+        </ul>
+      </div>
+    </div>
+    <div class="scenario-card">
+      <div class="scenario-header">
+        <span class="badge badge-amber">安定プラン</span>
+        <h3>B. 購入 → 住み続ける</h3>
+      </div>
+      <div class="scenario-body">
+        <p style="font-size:11px;color:var(--ink-light);">25年後の推定資産</p>
+        <p class="scenario-num" id="sc-b-asset">—<span class="unit">万円</span></p>
+        <ul class="scenario-detail">
+          <li>同じ物件に25年以上居住</li>
+          <li>住み替えコスト・手間なし</li>
+          <li>子どもの学区が安定</li>
+          <li>1LDKは手狭になる可能性</li>
+          <li>資産形成はやや劣後</li>
+        </ul>
+      </div>
+    </div>
+    <div class="scenario-card">
+      <div class="scenario-header">
+        <span class="badge badge-blue">柔軟プラン</span>
+        <h3>C. ずっと賃貸</h3>
+      </div>
+      <div class="scenario-body">
+        <p style="font-size:11px;color:var(--ink-light);">25年後の推定資産</p>
+        <p class="scenario-num" id="sc-c-asset">—<span class="unit">万円</span></p>
+        <ul class="scenario-detail">
+          <li>都内2LDK 35〜40万/月想定</li>
+          <li>引越しの自由度が高い</li>
+          <li>事業リスク時に身軽</li>
+          <li>家賃は資産にならない</li>
+          <li>インフレで家賃上昇リスク</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <table class="comp-table">
+    <thead>
+      <tr>
+        <th>比較項目</th>
+        <th>A. 購入→住み替え</th>
+        <th>B. 購入→住み続ける</th>
+        <th>C. 賃貸</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-label">25年後の資産</td>
+        <td><span class="icon-good">◎</span> 最も厚い</td>
+        <td><span class="icon-warn">○</span> 中程度</td>
+        <td><span class="icon-bad">△</span> 家賃分減</td>
+      </tr>
+      <tr>
+        <td class="col-label">月々の負担</td>
+        <td><span class="icon-good">○</span> ローン38万</td>
+        <td><span class="icon-good">○</span> ローン38万</td>
+        <td><span class="icon-bad">×</span> 家賃35〜40万＋更新料</td>
+      </tr>
+      <tr>
+        <td class="col-label">インフレ耐性</td>
+        <td><span class="icon-good">◎</span> 強い</td>
+        <td><span class="icon-good">◎</span> 強い</td>
+        <td><span class="icon-bad">×</span> 家賃上昇リスク</td>
+      </tr>
+      <tr>
+        <td class="col-label">子育て・広さ</td>
+        <td><span class="icon-good">◎</span> 住み替えで解決</td>
+        <td><span class="icon-bad">×</span> 1LDKは手狭</td>
+        <td><span class="icon-warn">○</span> いつでも転居可</td>
+      </tr>
+      <tr>
+        <td class="col-label">住み替えコスト</td>
+        <td><span class="icon-warn">△</span> 仲介・税など発生</td>
+        <td><span class="icon-good">◎</span> なし</td>
+        <td><span class="icon-warn">△</span> 引越し費用のみ</td>
+      </tr>
+      <tr>
+        <td class="col-label">経営リスク時</td>
+        <td><span class="icon-warn">△</span> 固定負債あり</td>
+        <td><span class="icon-warn">△</span> 固定負債あり</td>
+        <td><span class="icon-good">◎</span> 身軽に動ける</td>
+      </tr>
+      <tr>
+        <td class="col-label">住宅ローン控除</td>
+        <td><span class="icon-good">◎</span> 13年間・最大35万/年</td>
+        <td><span class="icon-good">◎</span> 13年間・最大35万/年</td>
+        <td><span class="icon-bad">×</span> なし</td>
+      </tr>
+      <tr>
+        <td class="col-label">売却益の税</td>
+        <td><span class="icon-warn">△</span> 6年後売却→長期20%<br><span style="font-size:11px;color:var(--ink-light);">3000万控除で大半は非課税</span></td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <strong>結論：Aプラン（購入→住み替え）が最も合理的です。</strong><br>
+    月々の負担は賃貸とほぼ同じか安く、資産は大きく形成できます。売却時の税金も「6年後売却＋3,000万円特別控除」の組み合わせで大幅に圧縮できます。懸念点は「住み替えの手間とタイミングリスク」ですが、都心の希少物件は値崩れしにくく、住み替え先（郊外）との価格差を活かす戦略です。
+  </div>
+</section>
+
+<!-- ── タイムライン ── -->
+<section class="section" id="timeline">
+  <p class="section-label">25年のロードマップ</p>
+  <h2 class="section-title">年齢別　お金の動きを整理</h2>
+
+  <div class="timeline" id="tl-content">
+    <!-- JS で描画 -->
+  </div>
+</section>
+
+<!-- ── NISA・教育資金 ── -->
+<section class="section" id="nisa">
+  <p class="section-label">NISA × 教育資金</p>
+  <h2 class="section-title">子どもの教育費は、NISAで準備できる</h2>
+
+  <div class="premise-grid">
+    <div class="premise-item">
+      <p class="pk">夫のNISA残り枠</p>
+      <p class="pv">1,080万円</p>
+      <p class="ps">生涯枠1,800万 − 使用済720万</p>
+    </div>
+    <div class="premise-item">
+      <p class="pk">妻のNISA残り枠</p>
+      <p class="pv">1,800万円</p>
+      <p class="ps">未使用・これからフル活用</p>
+    </div>
+    <div class="premise-item">
+      <p class="pk">夫婦合計の残り枠</p>
+      <p class="pv">2,880万円</p>
+      <p class="ps">月60万（年720万）で約4年で埋まる</p>
+    </div>
+    <div class="premise-item">
+      <p class="pk">月のNISA投資額</p>
+      <p class="pv">月60万（夫婦合計）</p>
+      <p class="ps">育休中は夫のみ月20万に一時抑制</p>
+    </div>
+  </div>
+
+  <div class="nisa-bar-wrap">
+    <p class="nisa-bar-label">NISAの資産成長（年利5%想定）</p>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px;" id="nisa-bars">
+    </div>
+  </div>
+
+  <div style="margin-top:1.5rem;">
+    <p style="font-size:13px;font-weight:500;margin-bottom:1rem;">子ども1人の教育費の目安</p>
+    <table class="comp-table">
+      <thead>
+        <tr><th>段階</th><th>公立ルート</th><th>私立ルート</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="col-label">幼稚園〜小学校</td><td>約300万</td><td>約500万</td></tr>
+        <tr><td class="col-label">中学・高校（6年）</td><td>約200万</td><td>約600万</td></tr>
+        <tr><td class="col-label">大学（4年）</td><td>約400万（国公立）</td><td>約800万（私立文系）</td></tr>
+        <tr><td class="col-label">習い事・塾等</td><td colspan="2">約300万（共通）</td></tr>
+        <tr style="font-weight:500"><td class="col-label">合計</td><td>約1,200万</td><td>約2,200万</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout" style="margin-top:1.25rem;">
+    <strong>NISAだけで教育費の大半をカバーできます。</strong><br>
+    10年後のNISA総資産は約<span id="nisa-10yr">—</span>万円の見込み（年利5%・育休中一部停止を考慮）。子どもが大学入学する頃には取り崩し可能な状態に。NISAの引き出しは<strong>全額非課税</strong>なので、普通預金や学資保険よりも有利です。
+  </div>
+
+  <div class="callout warn">
+    <strong>育休中の注意点：</strong>妻の収入が給付金（給与の67%）になる12ヶ月間は、世帯手取りが約20万円ほど減ります。この期間はNISAを夫のみ月20万に絞り、生活費バッファを優先してください。出産前に<strong>育休バッファ資金として200〜250万円</strong>を手元においておくと安心です。
+  </div>
+
+  <p class="note-text">* NISA年間投資上限：成長投資枠240万＋つみたて枠120万＝360万円（1人）。夫婦合計で月最大60万円。非課税保有限度額は1,800万円/人。年利5%はオルカン・S&P500の長期平均を参考にした想定値であり、将来の運用成果を保証するものではありません。</p>
+</section>
+
+<!-- ── 大切なポイント ── -->
+<section class="section" id="notes">
+  <p class="section-label">重要事項</p>
+  <h2 class="section-title">決断前に共有しておきたいこと</h2>
+
+  <div style="display:flex;flex-direction:column;gap:1rem;">
+    <div class="callout">
+      <strong>① 「6年後売却」が税金面での最重要ポイント</strong><br>
+      不動産を売るとき、「所有期間5年以下」だと税率が約40%、「5年超」だと約20%になります。今年購入なら2032年1月以降の売却が長期扱い。さらに自宅なら「3,000万円特別控除」が使えるので、値上がり益が3,000万円以内なら<strong>ほぼ税金ゼロ</strong>で売却できます。5年ちょうどではなく、余裕をもって6年目以降に売ることが大切です。
+    </div>
+
+    <div class="callout">
+      <strong>② 金利上昇への備え方</strong><br>
+      変動金利が今後1〜2%上がると、月返済が5〜10万円増える可能性があります。ただし、その頃には年収も上がっている想定です。備え方としては「繰上返済よりNISAを優先」が基本戦略。NISA年利5%想定 ＞ ローン金利0.85%なので、数学的にはNISAを継続する方が有利です。万が一金利が3%を超えるような局面では、その時点で繰上返済を検討します。
+    </div>
+
+    <div class="callout">
+      <strong>③ 1件目の物件選びで最重視すること</strong><br>
+      6年後に売ることを前提とするなら、「気に入るかどうか」より<strong>「売れるかどうか」</strong>が最優先です。具体的には：駅徒歩5分以内・都心へのアクセス良好・築年数が浅い（または大規模修繕済み）・管理体制がしっかりしているマンション。1LDKでも資産価値の高い物件を選ぶことが、住み替えシナリオを成立させる鍵です。
+    </div>
+
+    <div class="callout warn">
+      <strong>④ 経営者ローンの注意点</strong><br>
+      会社経営者の住宅ローン審査は会社員より厳しく、<strong>直近3期の決算書</strong>が重視されます。役員報酬の安定性・会社の財務健全性が問われます。フラット35（固定金利）も選択肢として検討する価値があります。早めに複数の銀行に相談することをおすすめします。
+    </div>
+
+    <div class="callout warn">
+      <strong>⑤ 「賃貸の方が良い」場合もある</strong><br>
+      もし今後3〜5年で事業の大きな変化（外部資本調達・事業売却・海外展開など）を考えているなら、固定負債なしで身軽にしておく賃貸という選択も合理的です。また、郊外への住み替えは「リモートワーク中心」が確定してから判断するとリスクが下がります。
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>このシミュレーションはAI（Claude）を使って試算したものです。</p>
+  <p>実際の融資可否・金利・税額はFP・銀行・税理士にご確認ください。</p>
+  <p style="margin-top:0.5rem;font-size:10px;color:#5a5a50;">作成日 2026年3月　／　pump Inc.</p>
+</footer>
+
+<script>
+// ── Loan calculations ──
+function mpCalc(principal, rate, years) {
+  if (rate < 0.001 || years <= 0) return 0;
+  const r = rate / 100 / 12, n = years * 12;
+  return principal * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1);
+}
+function remBal(principal, rate, years, elapsed) {
+  if (rate < 0.001) return principal * (1 - elapsed/years);
+  const r = rate/100/12, n=years*12, k=Math.min(elapsed*12,n);
+  return principal * (Math.pow(1+r,n) - Math.pow(1+r,k)) / (Math.pow(1+r,n)-1);
+}
+function calcTax(gain, yrs) {
+  const taxable = Math.max(0, gain - 30000000);
+  return taxable * (yrs <= 5 ? 0.3963 : 0.20315);
+}
+function fmt(n) { return Math.round(n).toLocaleString(); }
+function fmtO(n) { return (n/1e8).toFixed(2)+'億'; }
+
+// ── All slider definitions ──
+const sliderDefs = [
+  {id:'age1',    out:'so-age1',    fmt: v=>`${Math.round(v)}歳`},
+  {id:'age2',    out:'so-age2',    fmt: v=>`${Math.round(v)}歳`},
+  {id:'childyr', out:'so-childyr', fmt: v=>v==0?'今年':v==1?'1年後':`${Math.round(v)}年後`},
+  {id:'loanm',   out:'so-loanm',   fmt: v=>`${v.toFixed(1)}万/月`},
+  {id:'dp',      out:'so-dp',      fmt: v=>`${fmt(v)}万`},
+  {id:'rate',    out:'so-rate',    fmt: v=>`${v.toFixed(2)}%`},
+  {id:'i1',      out:'so-i1',      fmt: v=>`${fmt(v)}万`},
+  {id:'i2',      out:'so-i2',      fmt: v=>`${fmt(v)}万`},
+  {id:'life',    out:'so-life',    fmt: v=>`${Math.round(v)}万/月`},
+  {id:'nisa',    out:'so-nisa',    fmt: v=>`${Math.round(v)}万/月`},
+  {id:'nisamat', out:'so-nisamat', fmt: v=>`${Math.round(v)}万/月`},
+];
+
+function syncSliders() {
+  sliderDefs.forEach(s => {
+    const el = document.getElementById('sl-'+s.id);
+    const out = document.getElementById(s.out);
+    if (el && out) out.textContent = s.fmt(parseFloat(el.value));
+  });
+}
+
+function gv(id) { return parseFloat(document.getElementById('sl-'+id).value); }
+
+function runSim() {
+  syncSliders();
+
+  const age1    = gv('age1');
+  const age2    = gv('age2');
+  const childYr = gv('childyr'); // 何年後に子が生まれるか
+  const loanM   = gv('loanm') * 10000;
+  const dp      = gv('dp') * 10000;
+  const rate    = gv('rate');
+  const i1      = gv('i1') * 10000;
+  const i2      = gv('i2') * 10000;
+  const lifeM   = gv('life') * 10000;
+  const nisaNorm= gv('nisa') * 10000;
+  const nisaMat = gv('nisamat') * 10000;
+  const loanYrs = 35;
+
+  // 子どもの現在年齢（誕生後なら正値、未誕生は負値）
+  const childAge = -childYr; // 今は未誕生
+
+  // 前提カード更新
+  document.getElementById('p-age1').textContent = `${Math.round(age1)}歳・年収${fmt(gv('i1'))}万`;
+  document.getElementById('p-age2').textContent = `${Math.round(age2)}歳・年収${fmt(gv('i2'))}万`;
+  const childBirthYear = 2026 + childYr;
+  document.getElementById('p-child').textContent = childYr === 0 ? `1人（今年誕生予定）` : `1人予定（${childBirthYear}年・${Math.round(childYr)}年後）`;
+
+  // ローン計算
+  const r = rate/100/12, n = loanYrs*12;
+  const maxLoan  = loanM * (Math.pow(1+r,n)-1) / (r*Math.pow(1+r,n));
+  const maxPrice = maxLoan + dp;
+  const actualMp = mpCalc(maxLoan, rate, loanYrs);
+  const totalInc = i1 + i2;
+  const takeM    = totalInc * 0.72 / 12;
+  const ratio    = actualMp * 12 / totalInc * 100;
+  const surplus  = takeM - actualMp - nisaNorm - lifeM;
+  const surplusW = Math.round(surplus / 10000);
+
+  // 結論エリア更新
+  document.getElementById('r-price').textContent   = fmtO(maxPrice);
+  document.getElementById('r-loan').textContent    = fmt(maxLoan/10000)+'万';
+  document.getElementById('r-monthly').textContent = (Math.round(actualMp/10000*10)/10)+'万';
+  document.getElementById('r-ratio').textContent   = ratio.toFixed(1)+'%';
+  document.getElementById('r-surplus').textContent = surplusW+'万';
+  document.getElementById('r-surplus').style.color = surplusW < 0 ? 'var(--red)' : surplusW < 10 ? 'var(--amber)' : 'var(--accent)';
+
+  const lp  = Math.min(Math.round(actualMp/takeM*100), 100);
+  const np  = Math.min(Math.round(nisaNorm/takeM*100), 100);
+  const lif = Math.min(Math.round(lifeM/takeM*100), 100);
+  const sav = Math.max(100-lp-np-lif, 0);
+  const over= Math.max(lp+np+lif-100, 0);
+  document.getElementById('r-bar').innerHTML = `
+    <div class="rb-seg" style="width:${lp}%;background:#2d5a3d;">${lp>8?'返済':''}</div>
+    <div class="rb-seg" style="width:${np}%;background:#4a90d9;">${np>8?'NISA':''}</div>
+    <div class="rb-seg" style="width:${lif}%;background:#888880;">${lif>8?'生活':''}</div>
+    ${sav>0?`<div class="rb-seg" style="width:${sav}%;background:#9fd4b0;color:#1a4a2e;">${sav>8?'余力':''}</div>`:''}
+    ${over>0?`<div class="rb-seg" style="width:${Math.min(over,20)}%;background:#c0392b;">${over>5?'超':''}</div>`:''}
+  `;
+  const al = document.getElementById('r-alert');
+  if (surplusW < 0) {
+    al.className = 'alert-bar alert-ng';
+    al.textContent = `月${Math.abs(surplusW)}万不足。NISAを月${Math.max(0,Math.round(gv('nisa')+surplusW))}万に抑えるか、生活費を見直してください。`;
+  } else if (surplusW < 10) {
+    al.className = 'alert-bar alert-warn';
+    al.textContent = `余力${surplusW}万はギリギリ。育休・保育料の時期は特に注意が必要です。`;
+  } else {
+    al.className = 'alert-bar alert-ok';
+    al.textContent = `月${surplusW}万の余力あり。NISA月${Math.round(gv('nisa'))}万を積みながらローン返済を並走できます。`;
+  }
+
+  // 結論セクション更新
+  document.getElementById('c-maxprice').textContent = fmtO(maxPrice);
+  document.getElementById('c-loan').textContent     = fmt(maxLoan/10000)+'万';
+  document.getElementById('c-monthly').textContent  = (Math.round(actualMp/10000*10)/10)+'万/月';
+  document.getElementById('c-ratio').textContent    = ratio.toFixed(1)+'%';
+
+  // フェーズ2試算
+  const saleP1   = maxPrice * 1.10;
+  const rem1     = remBal(maxLoan, rate, loanYrs, 6);
+  const gain1    = saleP1 - maxPrice;
+  const tax1     = calcTax(gain1, 6);
+  const proceeds1= saleP1 - rem1 - tax1 - saleP1*0.03 - 300000;
+  const savings6 = Math.max(surplus * 0.3, 0) * 12 * 6;
+  const totalFund6 = Math.max(proceeds1 + savings6, 0);
+  const r2 = 1.2/100/12, n2 = 29*12;
+  const maxLoan2 = loanM * (Math.pow(1+r2,n2)-1)/(r2*Math.pow(1+r2,n2));
+  const dp2  = Math.min(totalFund6 * 0.4, maxLoan2*0.35);
+  const maxP2= maxLoan2 + dp2;
+  document.getElementById('c-p2').textContent = fmtO(maxP2);
+
+  // シナリオ比較
+  const inv = 0.04;
+  const matStart = childYr, matEnd = childYr + 1;
+
+  function nisaForYear(y) {
+    return (y >= matStart && y < matEnd) ? nisaMat : nisaNorm;
+  }
+
+  let liqA = (3000*10000 - dp);
+  for (let y=0; y<25; y++) {
+    const inc  = totalInc * Math.pow(1.03, y);
+    const take = inc * 0.72 / 12;
+    const ni   = nisaForYear(y);
+    const mp_  = y < 6 ? actualMp : mpCalc(maxLoan2, 1.2, 29);
+    const sur  = take - mp_ - ni - lifeM;
+    liqA = liqA*(1+inv/12) + Math.max(sur*0.25, 0);
+    if (y === 5) liqA += proceeds1;
+  }
+  let nisaA = 720*10000;
+  for (let m=0; m<300; m++) {
+    const y = Math.floor(m/12);
+    const ni = nisaForYear(y);
+    nisaA = (nisaA + ni) * (1+0.05/12);
+  }
+
+  let liqB = (3000*10000 - dp);
+  for (let y=0; y<25; y++) {
+    const inc  = totalInc * Math.pow(1.03, y);
+    const take = inc * 0.72 / 12;
+    const ni   = nisaForYear(y);
+    const sur  = take - actualMp - ni - lifeM;
+    liqB = liqB*(1+inv/12) + Math.max(sur*0.25, 0);
+  }
+  const propValB = maxPrice * 1.1;
+
+  let liqC = 3000*10000;
+  const rentM = 380000;
+  for (let y=0; y<25; y++) {
+    const inc  = totalInc * Math.pow(1.03, y);
+    const take = inc * 0.72 / 12;
+    const ni   = nisaForYear(y);
+    const sur  = take - rentM - ni - lifeM;
+    liqC = liqC*(1+inv/12) + Math.max(sur*0.25, 0);
+  }
+  let nisaC = 720*10000;
+  for (let m=0; m<300; m++) {
+    const y = Math.floor(m/12);
+    const ni = nisaForYear(y);
+    nisaC = (nisaC + ni) * (1+0.05/12);
+  }
+
+  document.getElementById('sc-a-asset').innerHTML = `${fmt(Math.round((liqA+nisaA)/10000))}<span class="unit">万円</span>`;
+  document.getElementById('sc-b-asset').innerHTML = `${fmt(Math.round((liqB+nisaA+propValB)/10000))}<span class="unit">万円</span>`;
+  document.getElementById('sc-c-asset').innerHTML = `${fmt(Math.round((liqC+nisaC)/10000))}<span class="unit">万円</span>`;
+
+  // タイムライン・NISAバー再描画（年齢連動）
+  buildTimeline(age1, age2, childYr, maxPrice, maxP2, Math.round(actualMp/10000*10)/10, gv('nisa'), gv('nisamat'));
+  buildNisaBars(childYr, gv('nisa'), gv('nisamat'));
+}
+
+// ── Timeline（年齢動的生成） ──
+function buildTimeline(age1, age2, childYr, price1, price2, mp, nisaN, nisaM_val) {
+  const yr = 2026;
+  const childBirth = yr + childYr;
+  const childAge0  = age1 + childYr;  // 夫の年齢（子誕生時）
+  const w_childAge = age2 + childYr;  // 妻の年齢（子誕生時）
+  const saleAge    = age1 + 6;
+  const nisaCompleteYr = Math.ceil(2880 / (nisaN * 12 / 10000)); // 大まかな年数
+  const nisaAge    = age1 + Math.min(nisaCompleteYr, 6);
+  const eduPeakAge = age1 + childYr + 13; // 子どもが中学入学の頃
+  const finalAge   = age1 + 15;
+
+  const items = [
+    {
+      age: `${Math.round(age1)}歳 / 妻${Math.round(age2)}歳`,
+      label: '今年（2026年）',
+      title: `${fmtO(price1)} 都心マンション購入`,
+      desc: `頭金${fmt(gv('dp'))}万、月返済${mp}万スタート。NISAを夫婦で月${Math.round(nisaN)}万積み始める。住宅ローン控除（年最大35万）も開始。`,
+      chips: [`頭金 ${fmt(gv('dp'))}万`, `月返済 ${mp}万`, `NISA月${Math.round(nisaN)}万`]
+    },
+    {
+      age: `${Math.round(childAge0)}歳 / 妻${Math.round(w_childAge)}歳`,
+      label: `${childBirth}年（${childYr === 0 ? '今年' : childYr+'年後'}）`,
+      title: `お子さん誕生・妻の育休開始`,
+      desc: `妻の収入が育休給付金（約67%）に。NISAは夫のみ月${Math.round(nisaM_val)}万に一時縮小。出産前に育休バッファとして200〜250万を手元に用意しておく。`,
+      chips: [`妻収入 約-30%`, `NISA月${Math.round(nisaM_val)}万に縮小`, `バッファ 200万準備`]
+    },
+    {
+      age: `${Math.round(childAge0+1)}歳 / 妻${Math.round(w_childAge+1)}歳`,
+      label: `${childBirth+1}年（復職）`,
+      title: `妻の復職・NISA月${Math.round(nisaN)}万再開`,
+      desc: `保育料がかかり始める（月約4万）。住宅ローン控除は継続中。NISAをフル再開し枠を埋めていく。`,
+      chips: [`保育料 月4万`, `NISA 月${Math.round(nisaN)}万復活`]
+    },
+    {
+      age: `${Math.round(saleAge)}歳 / 妻${Math.round(age2+6)}歳`,
+      label: `2032年〜（6年後）`,
+      title: `1件目売却 → 郊外${fmtO(price2)}に住み替え`,
+      desc: `6年目以降の売却で長期譲渡税（20.3%）が適用。3,000万特別控除で税負担を大幅圧縮。売却益を頭金に加えて郊外の広い物件へ。子どもの学区を意識した立地選び。`,
+      chips: [`長期譲渡税 20.3%`, `3000万控除 適用`, `子どもの学区を考慮`]
+    },
+    {
+      age: `${Math.round(nisaAge)}歳前後`,
+      label: `〜${yr + nisaCompleteYr}年`,
+      title: `夫婦のNISA生涯枠（約2,880万）埋め切り完了`,
+      desc: `以降は枠への追加投資なしで複利運用を継続。引き出しはいつでも全額非課税。子どもの教育費支出フェーズに向けて準備完了。`,
+      chips: [`夫婦枠 約2,880万`, `以降は運用のみ（非課税複利）`]
+    },
+    {
+      age: `${Math.round(eduPeakAge)}歳前後`,
+      label: `子ども中学〜大学`,
+      title: `子どもの進学費用ピーク・NISAから充当`,
+      desc: `中学〜大学の費用がかさむ時期（総額1,200〜2,200万）。NISAの一部を取り崩して対応。取り崩しは全額非課税で普通預金より有利。`,
+      chips: [`教育費 総1,200〜2,200万`, `NISA取り崩し（非課税）`]
+    },
+    {
+      age: `${Math.round(finalAge)}歳 / 妻${Math.round(age2+15)}歳`,
+      label: `15年後`,
+      title: `必要に応じて最終物件へ住み替え`,
+      desc: `子どもの進路が確定した後、広さ・立地を最終判断。2件目売却益＋資産積み上げで3億前後も視野に入る。`,
+      chips: [`子どもの進路確定後`, `3億前後も視野`]
+    },
+    {
+      age: `${Math.round(age1+25)}歳 / 妻${Math.round(age2+25)}歳`,
+      label: `25年後`,
+      title: `ローン完済・資産ピーク`,
+      desc: `不動産＋NISA＋流動資産の合計が最大規模に。老後資金として機能しながら、事業・相続など次のフェーズへ。`,
+      chips: [`ローン完済`, `総資産 最大化`]
+    },
+  ];
+
+  const tl = document.getElementById('tl-content');
+  tl.innerHTML = items.map(it => `
+    <div class="tl-item">
+      <div class="tl-age">
+        <span class="age-num" style="font-size:0.9rem;line-height:1.4;">${it.age}</span>
+        <span class="age-label">${it.label}</span>
+      </div>
+      <div class="tl-content">
+        <h4>${it.title}</h4>
+        <p>${it.desc}</p>
+        <div class="tl-nums">
+          ${it.chips.map(c=>`<span class="tl-num-chip">${c}</span>`).join('')}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── NISA bars（NISA月額・育休タイミング連動） ──
+function buildNisaBars(childYr, nisaN, nisaM_val) {
+  const matStart = childYr, matEnd = childYr + 1;
+  const years  = [3, 5, 10, 15, 20];
+  const labels = ['3年後', '5年後', '10年後', '15年後', '20年後'];
+
+  let nisaAsset = 720 * 10000;
+  let nisa2     = 0;
+  const mr      = 0.05/12;
+  // 残り枠：夫1080万、妻1800万 → 月換算で枠が尽きるまで積立
+  const husbandRemain = 1080 * 10000;
+  const wifeRemain    = 1800 * 10000;
+  let h_invested = 0, w_invested = 0;
+  const results  = {};
+
+  for (let m = 0; m < 240; m++) {
+    const y = Math.floor(m/12);
+    const isMat = y >= matStart && y < matEnd;
+    const p1 = h_invested < husbandRemain ? nisaN * 10000 / 2 : 0;
+    const p2 = (isMat || w_invested >= wifeRemain) ? 0 : nisaN * 10000 / 2;
+    // 育休中は設定値に従う
+    const p1_actual = p1;
+    const p2_actual = isMat ? nisaM_val * 10000 / 2 : p2;
+    h_invested += p1_actual;
+    w_invested += p2_actual;
+    nisaAsset  = (nisaAsset + p1_actual) * (1+mr);
+    nisa2      = (nisa2 + p2_actual) * (1+mr);
+    if (years.includes(y+1) && m%12===11) {
+      results[y+1] = Math.round((nisaAsset+nisa2)/10000);
+    }
+  }
+
+  const maxVal = Math.max(...Object.values(results), 1);
+  const container = document.getElementById('nisa-bars');
+  container.innerHTML = '';
+  years.forEach(y => {
+    const val = results[y] || 0;
+    const pct = Math.min(val/maxVal*100, 100);
+    container.innerHTML += `
+      <div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--ink-mid);margin-bottom:3px;">
+          <span>${labels[years.indexOf(y)]}（${2026+y}年）</span>
+          <span style="font-weight:500;color:var(--ink);">${val.toLocaleString()}万円</span>
+        </div>
+        <div style="height:16px;background:var(--paper-warm);border-radius:3px;overflow:hidden;">
+          <div style="height:100%;width:${pct}%;background:var(--accent);border-radius:3px;transition:width 0.6s ease;"></div>
+        </div>
+      </div>
+    `;
+  });
+
+  const el10 = document.getElementById('nisa-10yr');
+  if (el10) el10.textContent = (results[10] || 0).toLocaleString();
+}
+
+// ── Init ──
+sliderDefs.forEach(s => {
+  const el = document.getElementById('sl-'+s.id);
+  if (el) el.addEventListener('input', runSim);
+});
+
+runSim();
+</script>
+</body>
+</html>
